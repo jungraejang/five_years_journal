@@ -1,0 +1,19 @@
+.entry_paper {
+  width: 70%;
+  background-color: #ff7884;
+  /* height: 30%; */
+  border-radius: 10px;
+}
+
+.text_input_area {
+  width: 70%;
+  min-height: 50%;
+}
+
+.input_form_div {
+  padding-bottom: 2%;
+}
+
+.submit_button_div {
+  margin-top: 2%;
+}

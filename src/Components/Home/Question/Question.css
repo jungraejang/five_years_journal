@@ -1,0 +1,28 @@
+.question_paper {
+  width: 70%;
+  background-color: #65446c;
+  margin-bottom: 2%;
+  border-radius: 75px;
+  color: white;
+  /* height: 20%; */
+}
+
+.question_input_form {
+  width: 100%;
+}
+
+/* .question_input_form:focus {
+  border-color: #cccccc;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+} */
+
+.text_input_area {
+  width: 70%;
+  rows: 10;
+  border: none;
+  background-color: #3b3251;
+  color: white;
+  outline: none;
+  border-radius: 7px;
+}
