@@ -1,15 +1,8 @@
 #welcome_paper {
   padding-bottom: 2%;
   /* height: 50%; */
-  background: rgb(232, 255, 171);
-  background: linear-gradient(
-    90deg,
-    rgba(232, 255, 171, 1) 0%,
-    rgba(101, 68, 108, 1) 51%,
-    rgba(255, 120, 132, 1) 100%
-  );
   border-radius: 75px;
-  margin-top: 2%;
+  margin-top: 1%;
   margin-left: 2%;
   margin-right: 2%;
   width: 90%;
@@ -18,6 +11,29 @@
   flex-direction: column;
   align-items: center;
   margin-bottom: 2%;
+
+  /* background: rgb(232, 255, 171);
+  background: linear-gradient(
+    90deg,
+    rgba(232, 255, 171, 1) 0%,
+    rgba(101, 68, 108, 1) 51%,
+    rgba(255, 120, 132, 1) 100%
+  ); */
+  background: linear-gradient(-45deg, #65446c, #ff7884, #3b3251);
+  background-size: 400% 400%;
+  animation: gradientBG 9.54s ease infinite;
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .welcome_div {
@@ -33,6 +49,7 @@
   font-family: "Shrikhand", cursive;
   width: 100%;
   height: 50%;
+  color: white;
 }
 
 .welcome_buttons {
@@ -49,13 +66,13 @@
 }
 
 #user_email {
-  color: black;
+  color: #e8ffab;
 }
 
 #welcome_message_paper {
   width: 80%;
   height: 10%;
   border-radius: 50px;
-  background-color: #e8ffab;
+  background-color: #65446c;
   margin-top: 2%;
 }

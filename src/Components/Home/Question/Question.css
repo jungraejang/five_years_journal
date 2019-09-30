@@ -4,18 +4,12 @@
   margin-bottom: 2%;
   border-radius: 75px;
   color: white;
-  /* height: 20%; */
+  opacity: 0.9;
 }
 
 .question_input_form {
   width: 100%;
 }
-
-/* .question_input_form:focus {
-  border-color: #cccccc;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-} */
 
 .text_input_area {
   width: 70%;

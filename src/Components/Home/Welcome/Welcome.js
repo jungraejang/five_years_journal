@@ -10,7 +10,7 @@ const Welcome = props => {
       <Paper id="welcome_paper" elevation={6}>
         <Paper id="welcome_message_paper" elevation={8}>
           <Typography variant="h5" component="h5" id="home_message">
-            Your Five Years Journey Starts Here
+            {"Jung Rae's Five Years Journal"}
           </Typography>
           <Typography variant="h6" component="h6" id="user_email">
             Welcome: {props.user.email}

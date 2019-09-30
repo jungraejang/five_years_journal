@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import DeleteIcon from "@material-ui/icons/Delete";
+import IconButton from "@material-ui/core/IconButton";
+import EditIcon from "@material-ui/icons/Edit";
+
 import "./Question.css";
 
 const Question = props => {
@@ -12,25 +16,49 @@ const Question = props => {
     handleEntry,
     questionValue
   } = props;
-  console.log("question props", props);
   return (
     <>
-      <Paper class="question_paper" elevation={6} key={questionData.id}>
+      <Paper
+        className="question_paper"
+        elevation={6}
+        style={{ backgroundColor: "#65446c", color: "white" }}
+        key="question-paper"
+      >
         <div className="questions">
-          {questionData.length ? (
+          {questionData.length && props.questionEditToggle === false ? (
             questionData.map(el => {
               return (
                 <>
-                  <p
-                    key={el.id}
+                  <p key="p-tag">{el.data}</p>
+                  <IconButton
                     id={el.id}
+                    key={el.id}
+                    aria-label="delete"
                     onClick={event => {
-                      console.log("delete event", event.target.id);
-                      props.deleteData(event, fetchQuestion, event.target.id);
+                      console.log("delete event", event.target);
+                      props.deleteData(
+                        event,
+                        fetchQuestion,
+                        event.currentTarget.id
+                      );
                     }}
                   >
-                    {el.data}
-                  </p>
+                    <DeleteIcon
+                      key="delete_question"
+                      color="secondary"
+                      opacity="1"
+                    />
+                  </IconButton>
+                  <IconButton
+                    id={el.id}
+                    key="question-edit-toggle"
+                    aria-label="editToggle"
+                    onClick={event => {
+                      props.toggleEdit(fetchQuestion);
+                    }}
+                  >
+                    <EditIcon key="edit-question" color="primary" opacity="1" />
+                  </IconButton>
                 </>
               );
             })
@@ -38,8 +66,12 @@ const Question = props => {
             <div className="input_form_div">
               <form
                 id="question_input_form"
+                key="form"
                 onSubmit={event => {
-                  writeData(event, fetchQuestion);
+                  event.preventDefault();
+                  props.questionEditToggle
+                    ? props.editData(event, fetchQuestion, questionData[0].id)
+                    : writeData(event, fetchQuestion);
                 }}
               >
                 <p>What would you ask yourself?</p>

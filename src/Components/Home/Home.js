@@ -18,6 +18,8 @@ export default class Home extends Component {
       questionData: [],
       entryValue: "",
       questionValue: "",
+      questionEditToggle: false,
+      entryEditToggle: false,
       fetchEntry: {
         collection: "entries",
         field: "entry_text",
@@ -71,9 +73,6 @@ export default class Home extends Component {
             data: doc.data()[`${field}`],
             id: doc.id
           };
-
-          console.log("dataObj", dataObj);
-
           dataArr.push(dataObj);
         });
         this.setState({
@@ -92,8 +91,32 @@ export default class Home extends Component {
       .doc(`${id}`)
       .delete()
       .then(() => {
-        console.log("deleted a document");
+        this.setState({
+          questionValue: "",
+          entryValue: ""
+        });
         this.fetchData(fetchType);
+      });
+  };
+
+  editData = (event, fetchType, id) => {
+    event.preventDefault();
+    let { collection, field } = fetchType;
+    let dataObj = {};
+    dataObj[`${field}`] =
+      collection === "questions"
+        ? this.state.questionValue
+        : this.state.entryValue;
+    db.collection(`${collection}`)
+      .doc(`${id}`)
+      .update(dataObj)
+      .then(() => {
+        if (collection === "questions") {
+          this.setState({
+            questionEditToggle: !this.state.questionEditToggle
+          });
+          this.fetchData(this.state.fetchQuestion);
+        }
       });
   };
 
@@ -113,12 +136,26 @@ export default class Home extends Component {
 
     db.collection(`${collection}`)
       .add(dataObj)
+      .then(() => {
+        this.setState({
+          // entryValue: "",
+          // questionValue: "",
+          questionEditToggle: false,
+          entryEditToggle: false
+        });
+        this.fetchData(this.state.fetchQuestion);
+        this.fetchData(this.state.fetchEntry);
+      })
       .catch(function(error) {});
-    this.setState({
-      entryValue: ""
-    });
-    this.fetchData(this.state.fetchQuestion);
-    this.fetchData(this.state.fetchEntry);
+  };
+
+  toggleEdit = fetchType => {
+    let { collection } = fetchType;
+    if (collection === "questions") {
+      this.setState({
+        questionEditToggle: !this.state.questionEditToggle
+      });
+    }
   };
 
   handleEntry = (event, type) => {
@@ -139,7 +176,6 @@ export default class Home extends Component {
   }
 
   render() {
-    console.log("state", this.state);
     let { user } = this.props;
     let {
       entryData,
@@ -167,6 +203,9 @@ export default class Home extends Component {
           handleEntry={this.handleEntry}
           questionValue={questionValue}
           deleteData={this.deleteData}
+          editData={this.editData}
+          questionEditToggle={this.state.questionEditToggle}
+          toggleEdit={this.toggleEdit}
         />
 
         <Entry
@@ -176,6 +215,9 @@ export default class Home extends Component {
           handleEntry={this.handleEntry}
           entryValue={entryValue}
           deleteData={this.deleteData}
+          editData={this.editData}
+          entryEditToggle={this.state.entryEditToggle}
+          toggleEdit={this.toggleEdit}
         />
       </div>
     );

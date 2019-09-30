@@ -25,7 +25,6 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    console.log("running appp");
     // console.log("local storage", localStorage.getItem('user'))
     this.authListener();
   }

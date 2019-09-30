@@ -1,8 +1,8 @@
 .entry_paper {
   width: 70%;
   background-color: #ff7884;
-  /* height: 30%; */
   border-radius: 10px;
+  opacity: 0.9;
 }
 
 .text_input_area {
