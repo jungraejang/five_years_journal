@@ -155,6 +155,10 @@ export default class Home extends Component {
       this.setState({
         questionEditToggle: !this.state.questionEditToggle
       });
+    } else {
+      this.setState({
+        entryEditToggle: !this.state.entryEditToggle
+      });
     }
   };
 
