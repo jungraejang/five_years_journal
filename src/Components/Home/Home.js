@@ -116,6 +116,10 @@ export default class Home extends Component {
             questionEditToggle: !this.state.questionEditToggle
           });
           this.fetchData(this.state.fetchQuestion);
+        } else {
+          this.setState({
+            entryEditToggle: !this.state.entryEditToggle
+          });
         }
       });
   };
