@@ -120,6 +120,7 @@ export default class Home extends Component {
           this.setState({
             entryEditToggle: !this.state.entryEditToggle
           });
+          this.fetchData(this.state.fetchEntry);
         }
       });
   };
